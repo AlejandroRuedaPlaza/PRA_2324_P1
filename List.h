@@ -1,0 +1,13 @@
+template <typename T> 
+class List {
+	public:
+	// ... métodos virtuales puros
+		virtual void insert(int pos, T e) = 0;
+		void append(T e) = 0;
+		void prepend(T e) = 0;
+		T remove(int pos) = 0;
+		T get(int pos) = 0;
+		int search(T e) = 0;
+		bool empty() = 0;
+		int size() = 0;
+};
