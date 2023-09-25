@@ -9,18 +9,23 @@ class ListArray : public List<T> {
 		T* arr;
 		int max;
 		int n;
-		static const int MINSIZE;
+		static const int MINSIZE=2;
 
 	public:
 		// miembros públicos, incluidos los heredados de List<T>
-		void insert(int pos, T e){
-			if(pos <0 || pos>size()-1)
+		void insert(int pos, T e){  
+			if(pos >= 0 && pos < max){
+				for(int i=max; i>=pos; i--){
+					arr[i] = arr[i-1];
+				}
+				arr[pos] = e;
+				n++;
+			}else
 				throw std::out_of_range("Posicion no valida");
-			arr[pos] = e;
 		}
 
 		void append(T e){
-			insert(max-1, e);
+			insert(n, e);
 		}
 
 		void prepend(T e){
@@ -28,17 +33,21 @@ class ListArray : public List<T> {
 		}
 		
 		T remove(int pos){
-			if(pos <0 || pos>size()-1)
-				throw std::out_of_range("Posicion no valida");
-			T aux=arr[pos];
-			delete arr[pos];
-			return aux;			
+			if(pos >= 0 && pos < n){
+				T aux=arr[pos];
+				for(int i=pos; i<max; i++){
+					arr[i] = arr[i+1];
+				}
+				n--;
+				return aux;
+			}			
+			throw std::out_of_range("Posicion no valida");
 		}
 
 		T get(int pos){
-			if(pos <0 || pos>size()-1)
-				throw std::out_of_range("Posicion no valida");
-			return arr[pos];
+			if(pos >= 0 && pos < n)
+				return arr[pos];
+			throw std::out_of_range("Posicion no valida");
 		}
 		
 		int search(T e){
@@ -54,13 +63,18 @@ class ListArray : public List<T> {
 		}
 		
 		int size(){
-			return max;
+			return n;
 		}
 		
 
 
 		
-		ListArray();
+		ListArray(){
+			arr = new T[MINSIZE];
+			max = 4;
+			n = 0;
+		}
+
 		~ListArray(){
 			delete[] arr;
 		}
@@ -71,7 +85,13 @@ class ListArray : public List<T> {
 		}
 		
 		friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
-			out << "Instancia 0: " << list.get(0);
+			out << "List => [";
+			for(int i=0; i<list.n; i++){
+				out << std::endl << "  " << list.arr[i];			
+			}
+			if(list.n != 0)
+				out << std::endl;
+			out << "]";
 			return out;
 		}
 
