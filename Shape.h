@@ -12,7 +12,7 @@ class Shape{
 	public:
 		Shape();
 		Shape(std::string color);
-		std::string get_color();
+		std::string get_color() const;
 		void set_color(std::string c);
 		virtual double area() const;
 		virtual double perimeter() const;

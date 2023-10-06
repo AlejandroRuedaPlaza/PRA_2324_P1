@@ -11,7 +11,7 @@ Shape::Shape(std::string c){
 	throw std::invalid_argument("Color no valido");
 }
 
-std::string Shape::get_color(){
+std::string Shape::get_color() const{
 	return color;
 }
 
