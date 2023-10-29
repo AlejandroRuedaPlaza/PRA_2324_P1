@@ -30,12 +30,10 @@ std::ostream& operator<<(std::ostream &out, const Circle &c){
 }
 
 double Circle::area() const{
-	//TODO
 	return M_PI*pow(radius, 2);
 }
 
 double Circle::perimeter() const{
-	//TODO
 	return 2*M_PI*radius;
 }
 
@@ -45,5 +43,5 @@ void Circle::translate(double incX, double incY){
 }
 
 void Circle::print(){
-	std::cout << "[Circle: color = " << this->get_color() << "; center = " << this->get_center() << "; radius = " << this->get_radius() << "]";
+	std::cout << *this;
 }
