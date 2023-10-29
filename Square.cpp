@@ -61,5 +61,5 @@ void Square::translate(double incX, double incY){
 }
 
 void Square::print(){
-	std::cout << this;
+	std::cout << *this;
 }
