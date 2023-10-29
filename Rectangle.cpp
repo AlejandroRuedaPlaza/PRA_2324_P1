@@ -11,7 +11,8 @@ Rectangle::Rectangle(){
 
 
 Rectangle::Rectangle(std::string color, Point2D* vertices){
-	if(Point2D::distance(vertices[0], vertices[1]) == Point2D::distance(vertices[2], vertices[3]) && Point2D::distance(vertices[1], vertices[2]) == Point2D::distance(vertices[3], vertices[0]) ){
+//	if(Point2D::distance(vertices[0], vertices[1]) == Point2D::distance(vertices[2], vertices[3]) && Point2D::distance(vertices[1], vertices[2]) == Point2D::distance(vertices[3], vertices[0]) ){
+	if(check(vertices)){
 		set_color(color);
 		vs = vertices;
 	}else{
@@ -31,6 +32,11 @@ Rectangle::~Rectangle(){
 	delete[] vs;
 }
 
+bool Rectangle::check(Point2D* vertices){
+
+	return Point2D::distance(vertices[0], vertices[1]) == Point2D::distance(vertices[2], vertices[3]) && Point2D::distance(vertices[1], vertices[2]) == Point2D::distance(vertices[3], vertices[0]);
+}
+
 Point2D Rectangle::get_vertex(int ind) const{
 	if(ind >= 0 && ind < N_VERTICES){
 		return vs[ind];
@@ -45,8 +51,9 @@ Point2D Rectangle::operator[](int ind) const{
 }
 
 void Rectangle::set_vertices(Point2D* vertices){	
-	if(Point2D::distance(vertices[0], vertices[1]) == Point2D::distance(vertices[2], vertices[3]) &&
-	 Point2D::distance(vertices[1], vertices[2]) == Point2D::distance(vertices[3], vertices[0]) ){
+//	if(Point2D::distance(vertices[0], vertices[1]) == Point2D::distance(vertices[2], vertices[3]) &&
+//	 Point2D::distance(vertices[1], vertices[2]) == Point2D::distance(vertices[3], vertices[0]) ){
+	if(check(vertices)){
 		for(int i=0; i < N_VERTICES; i++){
 			vs[0] = vertices[0];
 		}
