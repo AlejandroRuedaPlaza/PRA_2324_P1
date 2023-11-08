@@ -3,7 +3,7 @@
 #include "Square.h"
 
 Drawing::Drawing(){
-	shapes = new ListLinked();
+	shapes = new ListLinked<Shape*>();
 }
 
 Drawing::~Drawing(){

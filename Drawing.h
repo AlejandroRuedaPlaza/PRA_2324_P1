@@ -5,10 +5,10 @@
 #include "ListLinked.h"
 #include <iostream>
 
-class Drawing: public ListLinked<Shape*>{
+class Drawing{
 	
 	private:
-		ListLinked<Shape*>* shapes;
+		List<Shape*>* shapes;
 
 	public:
 		Drawing();
